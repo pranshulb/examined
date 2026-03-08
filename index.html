@@ -1193,6 +1193,32 @@ const SCENARIOS = [
   },
 ];
 
+// ===== SAVE/LOAD =====
+function saveProgress() {
+  const state = {
+    currentScenario,
+    scores,
+    answers,
+    selectedPath,
+    traditions,
+    activeScenarioIndices: activeScenarios.map(s => SCENARIOS.indexOf(s)),
+    screen: document.querySelector('.screen.active')?.id
+  };
+  localStorage.setItem('examined-progress', JSON.stringify(state));
+}
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('examined-progress');
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch(e) { return null; }
+}
+
+function clearProgress() {
+  localStorage.removeItem('examined-progress');
+}
+
 // ===== STATE =====
 let currentScenario = 0;
 let activeScenarios = [];
@@ -1232,7 +1258,7 @@ function startExam() {
   renderScenario();
 }
 
-function restart() { showScreen('intro-screen'); selectedPath = null; }
+function restart() { clearProgress(); showScreen('intro-screen'); selectedPath = null; }
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1284,6 +1310,7 @@ function selectChoice(idx) {
   traditions[t] = (traditions[t]||0) + 1;
 
   answers.push({ scenario: currentScenario, choice: idx });
+  saveProgress();
 
   document.querySelectorAll('.choice').forEach((el, i) => {
     if (i === idx) el.classList.add('selected');
@@ -1310,6 +1337,7 @@ function nextScenario() {
 
 function showResults() {
   showScreen('results-screen');
+  saveProgress();
 
   const maxP = activeScenarios.length <= 10 ? 6 : 10;
   const normalized = {};
@@ -1600,6 +1628,38 @@ function copyResults() {
     setTimeout(() => btn.textContent = 'copy result', 2000);
   });
 }
+
+// ===== RESUME ON LOAD =====
+(function resumeIfSaved() {
+  const saved = loadProgress();
+  if (!saved || !saved.screen || !saved.selectedPath) return;
+
+  selectedPath = saved.selectedPath;
+  scores = saved.scores || {};
+  answers = saved.answers || [];
+  traditions = saved.traditions || {};
+  currentScenario = saved.currentScenario || 0;
+
+  // Rebuild activeScenarios from indices
+  if (saved.activeScenarioIndices) {
+    activeScenarios = saved.activeScenarioIndices.map(i => SCENARIOS[i]);
+  } else {
+    // fallback
+    if (selectedPath === 'essential') {
+      activeScenarios = ESSENTIAL_IDS.map(i => SCENARIOS[i]);
+    } else {
+      activeScenarios = SCENARIOS.filter((_, i) => i !== LAST_QUESTION_ID);
+    }
+    activeScenarios.push(SCENARIOS[LAST_QUESTION_ID]);
+  }
+
+  if (saved.screen === 'results-screen') {
+    showResults();
+  } else if (saved.screen === 'scenario-screen') {
+    showScreen('scenario-screen');
+    renderScenario();
+  }
+})();
 
 function emailResults() {
   const name = document.getElementById('archetype-name').textContent;
