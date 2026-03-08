@@ -51,6 +51,172 @@
 [data-theme="pink"] .community-input { background: #fff5f7; }
 [data-theme="pink"] .choice:hover { background: #ffd8e0; }
 
+/* ===== PINK MODE: FUNKY PHILOSOPHY ===== */
+
+/* Thinking emoji cursor */
+[data-theme="pink"] {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🤔</text></svg>") 16 0, auto;
+}
+[data-theme="pink"] .btn,
+[data-theme="pink"] .btn-small,
+[data-theme="pink"] .choice,
+[data-theme="pink"] .path-card,
+[data-theme="pink"] .theme-toggle {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>👆</text></svg>") 16 0, pointer;
+}
+
+/* Animated gradient background */
+[data-theme="pink"] body {
+  background: linear-gradient(-45deg, #fff0f3, #fce4ec, #f8e8ff, #fff0f3, #ffe0e6);
+  background-size: 400% 400%;
+  animation: pinkShift 15s ease infinite;
+}
+
+@keyframes pinkShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Wobble on the title */
+[data-theme="pink"] .intro-title {
+  animation: wobble 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-1deg); }
+  25% { transform: rotate(1.5deg); }
+  50% { transform: rotate(-0.5deg); }
+  75% { transform: rotate(1deg); }
+}
+
+/* Tilted choice cards — scattered notes aesthetic */
+[data-theme="pink"] .choice:nth-child(1) { transform: rotate(-0.8deg); }
+[data-theme="pink"] .choice:nth-child(2) { transform: rotate(0.6deg); }
+[data-theme="pink"] .choice:nth-child(3) { transform: rotate(-0.4deg); }
+[data-theme="pink"] .choice:hover {
+  transform: rotate(0deg) translateX(6px) scale(1.01) !important;
+}
+
+/* Doodle/sketch borders on cards */
+[data-theme="pink"] .choice,
+[data-theme="pink"] .path-card,
+[data-theme="pink"] .axis-card,
+[data-theme="pink"] .portrait,
+[data-theme="pink"] .reading-card,
+[data-theme="pink"] .community-section,
+[data-theme="pink"] .reflection {
+  border: 2px solid var(--accent);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 3px 3px 0px var(--accent-dim);
+}
+
+/* Bouncy hover on buttons */
+[data-theme="pink"] .btn,
+[data-theme="pink"] .btn-small {
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px var(--accent);
+  transition: all 0.2s ease;
+}
+[data-theme="pink"] .btn:hover,
+[data-theme="pink"] .btn-small:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--accent);
+  background: var(--accent);
+  color: white;
+}
+[data-theme="pink"] .btn:active,
+[data-theme="pink"] .btn-small:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0px var(--accent);
+}
+
+/* Path cards tilt */
+[data-theme="pink"] .path-card:nth-child(1) { transform: rotate(-1deg); }
+[data-theme="pink"] .path-card:nth-child(2) { transform: rotate(1deg); }
+[data-theme="pink"] .path-card:hover { transform: rotate(0deg) scale(1.02) !important; }
+
+/* Bounce animation on selected choice */
+[data-theme="pink"] .choice.selected {
+  animation: selectBounce 0.4s ease;
+  border-color: var(--accent);
+  box-shadow: 4px 4px 0px var(--accent);
+}
+
+@keyframes selectBounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.03) rotate(0deg); }
+  60% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+/* Progress dots are hearts in pink mode */
+[data-theme="pink"] .progress-dot {
+  width: auto; height: auto;
+  background: none !important;
+  font-size: 10px;
+  line-height: 1;
+}
+[data-theme="pink"] .progress-dot::after { content: '○'; color: var(--text-faint); }
+[data-theme="pink"] .progress-dot.done::after { content: '♥'; color: var(--accent); }
+[data-theme="pink"] .progress-dot.current::after { content: '♥'; color: var(--accent); font-size: 14px; }
+[data-theme="pink"] .progress-dot.current {
+  box-shadow: none;
+  transform: scale(1);
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* Reflection box — notebook margin note vibe */
+[data-theme="pink"] .reflection {
+  border-left: 3px solid var(--accent);
+  background: rgba(255,192,203,0.15);
+  position: relative;
+}
+[data-theme="pink"] .reflection::before {
+  content: '✎';
+  position: absolute;
+  top: -10px;
+  left: -12px;
+  font-size: 18px;
+}
+
+/* Radar chart glow */
+[data-theme="pink"] .radar-shape {
+  filter: drop-shadow(0 0 8px rgba(196,68,122,0.4));
+}
+
+/* Tradition badges — sticker look */
+[data-theme="pink"] .tradition-badge {
+  border-radius: 4px;
+  border: 2px solid var(--surface-2);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+  transform: rotate(-1deg);
+}
+[data-theme="pink"] .tradition-badge.active {
+  border-color: var(--accent);
+  box-shadow: 2px 2px 0px var(--accent-dim);
+  transform: rotate(1deg);
+}
+[data-theme="pink"] .tradition-badge:nth-child(even) { transform: rotate(0.5deg); }
+
+/* Theme toggle in pink mode */
+[data-theme="pink"] .theme-toggle {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  font-size: 1rem;
+}
+
+/* ===== END PINK MODE FUNKY ===== */
+
 [data-theme="pink"] body,
 [data-theme="pink"] .choice,
 [data-theme="pink"] .intro-quote,
