@@ -65,60 +65,17 @@
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>👆</text></svg>") 16 0, pointer;
 }
 
-/* Animated gradient background with floating blobs */
+/* Animated gradient background */
 [data-theme="pink"] body {
-  background: #fff0f3;
-  position: relative;
-  overflow-x: hidden;
+  background: linear-gradient(-45deg, #fff0f3, #fce4ec, #f8e8ff, #fff0f3, #ffe0e6);
+  background-size: 400% 400%;
+  animation: pinkShift 15s ease infinite;
 }
 
-[data-theme="pink"] body::before,
-[data-theme="pink"] body::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  z-index: -1;
-  pointer-events: none;
-}
-
-[data-theme="pink"] body::before {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #f9a8d4 0%, #f472b6 40%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  animation: blobDrift1 20s ease-in-out infinite;
-}
-
-[data-theme="pink"] body::after {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #c4b5fd 0%, #a78bfa 40%, transparent 70%);
-  bottom: -150px;
-  left: -150px;
-  animation: blobDrift2 25s ease-in-out infinite;
-}
-
-@keyframes blobDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-80px, 60px) scale(1.1); }
-  50% { transform: translate(-40px, 120px) scale(0.9); }
-  75% { transform: translate(60px, 40px) scale(1.05); }
-}
-
-@keyframes blobDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(100px, -40px) scale(1.15); }
-  50% { transform: translate(50px, -100px) scale(0.95); }
-  75% { transform: translate(-60px, -60px) scale(1.1); }
-}
-
-@keyframes blobDrift3 {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  33% { transform: translate(-30%, -60%) scale(1.2); }
-  66% { transform: translate(-70%, -40%) scale(0.85); }
+@keyframes pinkShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Wobble on the title */
@@ -931,26 +888,6 @@ body {
 </div>
 
 <script>
-// ===== PINK BLOBS =====
-function createPinkBlobs() {
-  if (document.getElementById('pink-blob-extra')) return;
-  const b1 = document.createElement('div');
-  b1.id = 'pink-blob-extra';
-  b1.style.cssText = 'position:fixed;width:450px;height:450px;border-radius:50%;filter:blur(80px);opacity:0.4;z-index:-1;pointer-events:none;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fbbf24 0%,#f59e0b 30%,transparent 70%);animation:blobDrift3 22s ease-in-out infinite;';
-  document.body.appendChild(b1);
-  const b2 = document.createElement('div');
-  b2.id = 'pink-blob-extra2';
-  b2.style.cssText = 'position:fixed;width:350px;height:350px;border-radius:50%;filter:blur(90px);opacity:0.35;z-index:-1;pointer-events:none;top:60%;right:10%;background:radial-gradient(circle,#fb7185 0%,#e11d48 30%,transparent 70%);animation:blobDrift1 18s ease-in-out infinite reverse;';
-  document.body.appendChild(b2);
-}
-
-function removePinkBlobs() {
-  const b1 = document.getElementById('pink-blob-extra');
-  const b2 = document.getElementById('pink-blob-extra2');
-  if (b1) b1.remove();
-  if (b2) b2.remove();
-}
-
 // ===== THEME =====
 function toggleTheme() {
   const html = document.documentElement;
@@ -959,12 +896,10 @@ function toggleTheme() {
     html.removeAttribute('data-theme');
     btn.textContent = "I'm not boring!";
     localStorage.setItem('examined-theme', 'dark');
-    removePinkBlobs();
   } else {
     html.setAttribute('data-theme', 'pink');
     btn.textContent = '✿';
     localStorage.setItem('examined-theme', 'pink');
-    createPinkBlobs();
   }
 }
 
@@ -975,7 +910,6 @@ function toggleTheme() {
     document.documentElement.setAttribute('data-theme', 'pink');
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('theme-toggle').textContent = '✿';
-      createPinkBlobs();
     });
   }
 })();
