@@ -604,7 +604,7 @@ body {
 </head>
 <body>
 
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">☽ boring</button>
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">i'm not boring</button>
 
 <div class="screen active" id="intro-screen">
   <div class="intro-content">
@@ -706,11 +706,11 @@ function toggleTheme() {
   const btn = document.getElementById('theme-toggle');
   if (html.getAttribute('data-theme') === 'pink') {
     html.removeAttribute('data-theme');
-    btn.textContent = '☽ boring';
+    btn.textContent = "i'm not boring";
     localStorage.setItem('examined-theme', 'dark');
   } else {
     html.setAttribute('data-theme', 'pink');
-    btn.textContent = '✿ fun';
+    btn.textContent = '✿';
     localStorage.setItem('examined-theme', 'pink');
   }
 }
@@ -721,7 +721,7 @@ function toggleTheme() {
   if (saved === 'pink') {
     document.documentElement.setAttribute('data-theme', 'pink');
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('theme-toggle').textContent = '✿ fun';
+      document.getElementById('theme-toggle').textContent = '✿';
     });
   }
 })();
