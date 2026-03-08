@@ -26,31 +26,6 @@
   --radius: 12px;
 }
 
-[data-theme="pink"] {
-  --bg: #fff0f3;
-  --surface: #ffe0e6;
-  --surface-2: #ffd1da;
-  --text: #2a1f24;
-  --text-dim: #6b4f58;
-  --text-faint: #b08a94;
-  --accent: #c4447a;
-  --accent-dim: #e8a0bb;
-  --red: #c94a6a;
-  --blue: #6a7fb5;
-  --green: #5aab7a;
-  --purple: #9a5ab5;
-  --teal: #5aaba0;
-  --orange: #b5845a;
-}
-
-[data-theme="pink"] .radar-grid { stroke: var(--text-faint); }
-[data-theme="pink"] .radar-axis { stroke: var(--text-faint); }
-[data-theme="pink"] .radar-shape { fill: var(--accent); fill-opacity: 0.2; stroke: var(--accent); }
-[data-theme="pink"] .radar-label { fill: var(--text-dim); }
-[data-theme="pink"] .community-entry { background: #fff5f7; }
-[data-theme="pink"] .community-input { background: #fff5f7; }
-[data-theme="pink"] .choice:hover { background: #ffd8e0; }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 ::selection { background: var(--accent-dim); color: var(--text); }
 html { font-size: 18px; }
@@ -62,11 +37,6 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-*, *::before, *::after {
-  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease;
 }
 
 .screen {
@@ -562,34 +532,6 @@ body {
   text-align: center; padding: 0.5rem;
 }
 
-/* THEME TOGGLE */
-.theme-toggle {
-  position: fixed;
-  top: 1.2rem;
-  right: 1.2rem;
-  z-index: 100;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--surface-2);
-  background: var(--surface);
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.4s ease;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.theme-toggle:hover {
-  border-color: var(--accent-dim);
-  color: var(--accent);
-}
-[data-theme="pink"] .theme-toggle {
-  background: rgba(255,208,218,0.7);
-  border-color: var(--accent-dim);
-}
-
 @media (max-width: 600px) {
   html { font-size: 16px; }
   .screen { padding: 1.5rem; }
@@ -603,8 +545,6 @@ body {
   </style>
 </head>
 <body>
-
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">☽ boring</button>
 
 <div class="screen active" id="intro-screen">
   <div class="intro-content">
@@ -700,32 +640,6 @@ body {
 </div>
 
 <script>
-// ===== THEME =====
-function toggleTheme() {
-  const html = document.documentElement;
-  const btn = document.getElementById('theme-toggle');
-  if (html.getAttribute('data-theme') === 'pink') {
-    html.removeAttribute('data-theme');
-    btn.textContent = '☽ boring';
-    localStorage.setItem('examined-theme', 'dark');
-  } else {
-    html.setAttribute('data-theme', 'pink');
-    btn.textContent = '✿ fun';
-    localStorage.setItem('examined-theme', 'pink');
-  }
-}
-
-// Load saved theme
-(function() {
-  const saved = localStorage.getItem('examined-theme');
-  if (saved === 'pink') {
-    document.documentElement.setAttribute('data-theme', 'pink');
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('theme-toggle').textContent = '✿ fun';
-    });
-  }
-})();
-
 const AXES = {
   consequence: { left: 'deontological', right: 'consequentialist', color: '#c9a84c' },
   individual: { left: 'communal', right: 'individual', color: '#4a6fb5' },
