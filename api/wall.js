@@ -1,23 +1,72 @@
-// Vercel serverless function — stores wall entries in the blob store
-// Uses a simple JSON file approach via Vercel KV-like pattern
-// For simplicity, we use jsonblob as backend but proxy through this to avoid CORS
+import { put, list, del } from '@vercel/blob';
 
-const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019ccfe8-62ea-77c6-9365-621dbecdbdf8';
+const BLOB_KEY = 'examined-wall.json';
+
+// Rate limiting
+const rateLimit = new Map();
+const RATE_WINDOW = 60000;
+const RATE_MAX_POST = 3;
+const RATE_MAX_GET = 30;
+
+function checkRate(ip, limit) {
+  const now = Date.now();
+  const entry = rateLimit.get(ip) || { count: 0, start: now };
+  if (now - entry.start > RATE_WINDOW) { entry.count = 0; entry.start = now; }
+  entry.count++;
+  rateLimit.set(ip, entry);
+  if (rateLimit.size > 1000) {
+    for (const [k, v] of rateLimit) { if (now - v.start > RATE_WINDOW * 2) rateLimit.delete(k); }
+  }
+  return entry.count <= limit;
+}
+
+async function getWallData() {
+  try {
+    const { blobs } = await list({ prefix: BLOB_KEY });
+    if (blobs.length === 0) return { entries: [] };
+    // Get the most recent blob
+    const latest = blobs.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt))[0];
+    const response = await fetch(latest.url);
+    return await response.json();
+  } catch (e) {
+    console.error('getWallData error:', e);
+    return { entries: [] };
+  }
+}
+
+async function saveWallData(data) {
+  // Delete old blobs first to avoid accumulation
+  try {
+    const { blobs } = await list({ prefix: BLOB_KEY });
+    for (const blob of blobs) {
+      await del(blob.url);
+    }
+  } catch (e) {
+    // ok if delete fails
+  }
+  
+  // Write new blob
+  await put(BLOB_KEY, JSON.stringify(data), {
+    access: 'public',
+    contentType: 'application/json',
+  });
+}
 
 export default async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  const ip = (req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown').split(',')[0].trim();
 
   if (req.method === 'GET') {
+    if (!checkRate(ip, RATE_MAX_GET)) {
+      return res.status(429).json({ error: 'too many requests' });
+    }
     try {
-      const response = await fetch(BLOB_URL);
-      const data = await response.json();
+      const data = await getWallData();
       return res.status(200).json(data);
     } catch (e) {
       return res.status(500).json({ error: 'failed to fetch wall' });
@@ -25,14 +74,14 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
+    if (!checkRate(ip, RATE_MAX_POST)) {
+      return res.status(429).json({ error: 'slow down' });
+    }
     try {
-      // Get current entries
-      const current = await fetch(BLOB_URL);
-      const data = await current.json();
+      const data = await getWallData();
       const entries = data.entries || [];
 
-      // Validate input
-      const { name, archetype } = req.body;
+      const { name, archetype, scores, answers, path } = req.body;
       if (!name || !archetype || typeof name !== 'string' || typeof archetype !== 'string') {
         return res.status(400).json({ error: 'name and archetype required' });
       }
@@ -40,30 +89,28 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'input too long' });
       }
 
-      // Sanitize
       const clean = (s) => s.replace(/[<>&"']/g, '');
-
       const now = new Date();
-      entries.push({
+      const entry = {
         name: clean(name),
         archetype: clean(archetype),
         date: now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
         ts: now.getTime()
-      });
+      };
 
-      // Cap at 200 entries
-      const trimmed = entries.slice(-200);
+      if (scores && typeof scores === 'object') entry.scores = scores;
+      if (answers && Array.isArray(answers)) entry.answers = answers;
+      if (path && typeof path === 'string') entry.path = clean(path);
 
-      // Save back
-      await fetch(BLOB_URL, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ entries: trimmed })
-      });
+      entries.push(entry);
+      const trimmed = entries.slice(-500);
+
+      await saveWallData({ entries: trimmed });
 
       return res.status(200).json({ ok: true, count: trimmed.length });
     } catch (e) {
-      return res.status(500).json({ error: 'failed to save' });
+      console.error('POST wall error:', e);
+      return res.status(500).json({ error: 'failed to save', detail: e.message });
     }
   }
 
