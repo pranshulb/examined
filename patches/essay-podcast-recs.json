@@ -1,0 +1,178 @@
+{
+  "The Examined Stoic": [
+    {
+      "title": "The Daily Stoic Podcast",
+      "type": "podcast",
+      "author": "Ryan Holiday",
+      "url": "https://dailystoic.com/podcast/",
+      "why": "Daily doses of ancient wisdom filtered through modern chaos—like Marcus Aurelius whispering in your ear during your commute. Less philosophy lecture, more emergency kit for the soul."
+    },
+    {
+      "title": "Epictetus: The Enchiridion",
+      "type": "essay",
+      "author": "Epictetus",
+      "url": "https://standardebooks.org/ebooks/epictetus/the-enchiridion",
+      "why": "A former slave's field manual for inner freedom, distilled into bite-sized maxims that hit harder than most modern self-help. Your ancestors read this before battle; you can read it before Monday."
+    }
+  ],
+  "The Reluctant Utilitarian": [
+    {
+      "title": "Famine, Affluence, and Morality",
+      "type": "essay",
+      "author": "Peter Singer",
+      "url": "https://rintintin.colorado.edu/~vancecd/phil308/Singer2.pdf",
+      "why": "The essay that makes you realize your morning latte might be a moral catastrophe. Singer's drowning-child thought experiment will haunt your wallet—and force you to reckon with what you actually owe strangers."
+    },
+    {
+      "title": "Partially Examined Life on Utilitarianism",
+      "type": "podcast",
+      "author": "Mark Linsenmayer et al.",
+      "url": "https://partiallyexaminedlife.com/",
+      "why": "Philosophy PhDs who escaped academia dissect the messy calculus of the greatest good. Smart without being smug, critical without being cynical—like therapy for your ethical anxieties."
+    }
+  ],
+  "The Existential Pragmatist": [
+    {
+      "title": "The Will to Believe",
+      "type": "essay",
+      "author": "William James",
+      "url": "https://www.gutenberg.org/files/26659/26659-h/26659-h.htm",
+      "why": "James defends leaping before you look—arguing that some truths only reveal themselves to those who dare to act. The philosophical permission slip for the practically courageous."
+    },
+    {
+      "title": "Awakening from the Meaning Crisis",
+      "type": "lecture_series",
+      "author": "John Vervaeke",
+      "url": "https://www.youtube.com/playlist?list=PLND1JCRq8Vuh3f0P5qjrSdb5eC1ZfZwWJ",
+      "why": "A cognitive scientist traces Western civilization's loss of meaning through philosophy, religion, and psychology—then rebuilds wisdom from the fragments. Dense, sprawling, transformative."
+    }
+  ],
+  "The Relational Existentialist": [
+    {
+      "title": "I Am Because We Are: Ubuntu Philosophy",
+      "type": "essay",
+      "author": "Internet Encyclopedia of Philosophy",
+      "url": "https://iep.utm.edu/hunhu-ubuntu-southern-african-thought/",
+      "why": "African philosophy's antidote to Descartes: your humanity emerges through connection, not isolated thought. A communal manifesto for those who find themselves in the mirror of others."
+    },
+    {
+      "title": "On Being with Krista Tippett",
+      "type": "podcast",
+      "author": "Krista Tippett",
+      "url": "https://onbeing.org/series/podcast/",
+      "why": "Where philosophy meets poetry, theology dances with neuroscience, and every conversation asks: what does it mean to be human together? Tippett listens like attention is an act of love."
+    }
+  ],
+  "The Radical Individualist": [
+    {
+      "title": "Civil Disobedience",
+      "type": "essay",
+      "author": "Henry David Thoreau",
+      "url": "https://users.manchester.edu/Facstaff/SSNaragon/Online/texts/201/Thoreau,%20CivilDisobedience.pdf",
+      "why": "Thoreau's defiant blueprint for conscience over conformity, written from jail after refusing to fund a war. The ur-text of American rebellion—Gandhi and King both carried it into battle."
+    },
+    {
+      "title": "The Partially Examined Life on Nietzsche",
+      "type": "podcast",
+      "author": "Mark Linsenmayer et al.",
+      "url": "https://partiallyexaminedlife.com/tag/nietzsche/",
+      "why": "Recovering academics wrestle with philosophy's most dangerous individualist, the prophet of self-overcoming. They bring Nietzsche down from his mountain without neutering his fire."
+    }
+  ],
+  "The Contemplative Mystic": [
+    {
+      "title": "Gravity and Grace",
+      "type": "essay_collection",
+      "author": "Simone Weil",
+      "url": "https://cominsitu.wordpress.com/wp-content/uploads/2021/09/simone-weil-gravity-and-grace-2.pdf",
+      "why": "A French mystic's field notes from the edge of existence, where suffering meets transcendence and attention becomes prayer. Weil writes like she's reporting from another dimension."
+    },
+    {
+      "title": "Making Sense: Conversations on Consciousness",
+      "type": "podcast",
+      "author": "Sam Harris",
+      "url": "https://www.samharris.org/podcasts",
+      "why": "A neuroscientist-turned-meditator bridges rationalism and contemplative practice, exploring consciousness without the mystical fluff. Secular spirituality for the scientifically minded seeker."
+    }
+  ],
+  "The Philosophical Warrior": [
+    {
+      "title": "Hagakure: The Book of the Samurai (excerpts online)",
+      "type": "essay",
+      "author": "Yamamoto Tsunetomo",
+      "url": "https://www.pdf-archive.com/2015/06/20/hagakure/",
+      "why": "An 18th-century samurai's meditation on death, loyalty, and living with absolute presence. Less about swords, more about the discipline to face each moment as if it's your last."
+    },
+    {
+      "title": "Iain McGilchrist on The Master and His Emissary",
+      "type": "lecture",
+      "author": "Iain McGilchrist",
+      "url": "https://www.youtube.com/watch?v=e90hUwFvB94",
+      "why": "A psychiatrist reveals how the left brain's hunger for control has colonized Western thought—and why integrating both hemispheres is the warrior's real conquest. Neuroscience meets philosophy of civilization."
+    }
+  ],
+  "The Practical Philosopher": [
+    {
+      "title": "The School of Life YouTube Channel",
+      "type": "video_series",
+      "author": "Alain de Botton",
+      "url": "https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog",
+      "why": "Philosophy as therapy for the anxiously alive—bite-sized videos on relationships, work, and self-knowledge. De Botton makes Schopenhauer relevant to your lunch break."
+    },
+    {
+      "title": "Seth Tichenor: Philosophy is a Human Right",
+      "type": "TED_talk",
+      "author": "Seth Tichenor",
+      "url": "https://www.ted.com/talks/seth_tichenor_philosophy_is_a_human_right_and_can_change_your_life",
+      "why": "A philosopher makes the case that thinking critically about existence isn't academic luxury—it's survival gear. Short, accessible, and unapologetically earnest about philosophy's practical power."
+    }
+  ],
+  "The Poetic Empiricist": [
+    {
+      "title": "The Poetics of Space",
+      "type": "essay",
+      "author": "Gaston Bachelard",
+      "url": "https://www.academia.edu/7012171/The_Poetics_of_Space",
+      "why": "A phenomenologist explores how we inhabit houses, corners, drawers—turning architecture into archaeology of the soul. Observation becomes poetry; the ordinary reveals its sacred geometry."
+    },
+    {
+      "title": "Iseult Gillespie: The Meaning of Life According to Simone de Beauvoir",
+      "type": "TED_talk",
+      "author": "Iseult Gillespie",
+      "url": "https://www.ted.com/talks/iseult_gillespie_the_meaning_of_life_according_to_simone_de_beauvoir",
+      "why": "How de Beauvoir broke philosophy's rules to insist that embodied, lived experience trumps abstract theory. Existentialism for those who trust their senses more than systems."
+    }
+  ],
+  "The Communal Builder": [
+    {
+      "title": "Michael Sandel on The Tyranny of Merit",
+      "type": "lecture",
+      "author": "Michael J. Sandel",
+      "url": "https://news.harvard.edu/gazette/story/2021/01/the-myth-of-meritocracy-according-to-michael-sandel/",
+      "why": "Harvard's communitarian diagnostician dissects how meritocracy corrodes solidarity—and why we need to rebuild the common good. A philosophical autopsy of what binds (and breaks) us."
+    },
+    {
+      "title": "I Am Because We Are: Ubuntu and African Philosophy",
+      "type": "podcast",
+      "author": "To The Best Of Our Knowledge",
+      "url": "https://www.ttbook.org/interview/i-am-because-we-are-african-philosophy-ubuntu",
+      "why": "The radical proposition that your humanity is not solo achievement but collective creation. Ubuntu as antidote to Western atomization—you exist because others call you into being."
+    }
+  ],
+  "The Philosophical Pluralist": [
+    {
+      "title": "Contingency, Irony, and Solidarity",
+      "type": "book_excerpt",
+      "author": "Richard Rorty",
+      "url": "https://www.cambridge.org/core/books/contingency-irony-and-solidarity/608B102FB73C92EE1CDDE5C21A41AE38",
+      "why": "Rorty's case for holding your beliefs lightly while fighting for them fiercely—philosophical irony as the foundation for genuine solidarity. Truth is conversation, not monument."
+    },
+    {
+      "title": "The Partially Examined Life",
+      "type": "podcast",
+      "author": "Mark Linsenmayer, Wes Alwan, Seth Paskin",
+      "url": "https://partiallyexaminedlife.com/",
+      "why": "Former philosophy grad students prove you can take ideas seriously without taking yourself seriously—roaming from Sartre to Rorty, always skeptical of dogma. The pluralist's podcast."
+    }
+  ]
+}

@@ -1,0 +1,497 @@
+/* ===== AGENT 4: VISUAL POLISH & PINK MODE ===== */
+
+/* ===== INTRO SCREEN ANIMATIONS ===== */
+
+/* Axes list items fade in one by one with staggered delay */
+.intro-axis {
+  opacity: 0;
+  animation: axisFadeIn 0.6s ease forwards;
+}
+
+.intro-axis:nth-child(1) { animation-delay: 0.2s; }
+.intro-axis:nth-child(2) { animation-delay: 0.4s; }
+.intro-axis:nth-child(3) { animation-delay: 0.6s; }
+.intro-axis:nth-child(4) { animation-delay: 0.8s; }
+.intro-axis:nth-child(5) { animation-delay: 1.0s; }
+.intro-axis:nth-child(6) { animation-delay: 1.2s; }
+.intro-axis:nth-child(7) { animation-delay: 1.4s; }
+
+@keyframes axisFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Quote typewriter effect */
+.intro-quote {
+  overflow: hidden;
+  border-right: 2px solid var(--accent);
+  white-space: nowrap;
+  animation: typewriter 2.5s steps(45) 0.1s forwards, blinkCursor 0.75s step-end infinite;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+    border-right-color: transparent;
+  }
+}
+
+@keyframes blinkCursor {
+  from, to {
+    border-right-color: transparent;
+  }
+  50% {
+    border-right-color: var(--accent);
+  }
+}
+
+/* Reset for screens other than intro */
+#scenario-screen .intro-quote,
+#results-screen .intro-quote,
+#path-screen .intro-quote {
+  animation: none;
+  border-right: none;
+  white-space: normal;
+  width: auto;
+}
+
+/* ===== SCENARIO TRANSITION ANIMATIONS ===== */
+
+/* Crossfade transition when scenarios change */
+.scenario-container {
+  animation: scenarioFadeIn 0.5s ease-in-out;
+}
+
+@keyframes scenarioFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transition for scenario content */
+.scenario-title,
+.scenario-body,
+.scenario-question,
+.choices {
+  animation: contentSlideIn 0.4s ease-out;
+}
+
+@keyframes contentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== FURTHER EXPLORATION SECTION ===== */
+
+.exploration-section {
+  margin: 3rem 0;
+}
+
+.exploration-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+.exploration-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.exploration-card {
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Category-based left border (like reading cards but distinct) */
+.exploration-card[data-category="film"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--purple);
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.exploration-card[data-category="documentary"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--teal);
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.exploration-card[data-category="game"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--orange);
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.exploration-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+/* Category label styled like tradition badges */
+.exploration-category {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.exploration-category[data-type="film"] {
+  background: rgba(138, 74, 181, 0.15);
+  color: var(--purple);
+  border: 1px solid rgba(138, 74, 181, 0.3);
+}
+
+.exploration-category[data-type="documentary"] {
+  background: rgba(74, 181, 168, 0.15);
+  color: var(--teal);
+  border: 1px solid rgba(74, 181, 168, 0.3);
+}
+
+.exploration-category[data-type="game"] {
+  background: rgba(181, 138, 74, 0.15);
+  color: var(--orange);
+  border: 1px solid rgba(181, 138, 74, 0.3);
+}
+
+.exploration-title-text {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.exploration-why {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  line-height: 1.6;
+}
+
+/* ===== DELIBERATION TIME SECTION ===== */
+
+.deliberation-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--surface-2);
+  opacity: 0.85;
+}
+
+.deliberation-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  color: var(--text-faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.deliberation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.deliberation-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--surface-2);
+}
+
+.deliberation-entry:last-child {
+  border-bottom: none;
+}
+
+.deliberation-scenario {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.deliberation-time {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ===== PINK MODE ENHANCEMENTS FOR NEW FEATURES ===== */
+
+/* Philosopher match section */
+[data-theme="pink"] .philosopher-section {
+  border: 2px solid var(--accent);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  animation: sectionBounceIn 0.6s ease;
+}
+
+@keyframes sectionBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) rotate(-1deg);
+  }
+  60% {
+    transform: scale(1.02) rotate(0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+[data-theme="pink"] .philosopher-runner {
+  border: 2px solid var(--surface-2);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  transform: rotate(-0.5deg);
+  transition: all 0.3s ease;
+}
+
+[data-theme="pink"] .philosopher-runner:nth-child(2) {
+  transform: rotate(0.5deg);
+}
+
+[data-theme="pink"] .philosopher-runner:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  border-color: var(--accent-dim);
+}
+
+[data-theme="pink"] .philosopher-match-bar {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--accent-dim);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* Consistency check section */
+[data-theme="pink"] .consistency-section {
+  border: 2px solid var(--accent);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  transform: rotate(-0.3deg);
+}
+
+[data-theme="pink"] .consistency-observation {
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 192, 203, 0.1);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="pink"] .consistency-score {
+  animation: scoreWiggle 2s ease-in-out infinite;
+}
+
+@keyframes scoreWiggle {
+  0%, 100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+/* Rarity badge pink mode */
+[data-theme="pink"] .rarity-badge {
+  border: 2px solid var(--accent);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  background: rgba(196, 68, 122, 0.08);
+  transform: rotate(0.5deg);
+  transition: all 0.3s ease;
+}
+
+[data-theme="pink"] .rarity-badge:hover {
+  transform: rotate(-0.5deg) scale(1.02);
+}
+
+[data-theme="pink"] .rarity-badge[data-rarity="rare"] {
+  animation: rarityPulse 2s ease-in-out infinite;
+}
+
+@keyframes rarityPulse {
+  0%, 100% {
+    box-shadow: 3px 3px 0px var(--accent-dim);
+  }
+  50% {
+    box-shadow: 5px 5px 0px var(--accent-dim), 0 0 15px rgba(196, 68, 122, 0.3);
+  }
+}
+
+/* Exploration section pink mode */
+[data-theme="pink"] .exploration-section {
+  margin: 3rem 0;
+}
+
+[data-theme="pink"] .exploration-card {
+  border: 2px solid var(--surface-2);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  transform: rotate(-0.3deg);
+  transition: all 0.3s ease;
+}
+
+[data-theme="pink"] .exploration-card:nth-child(even) {
+  transform: rotate(0.4deg);
+}
+
+[data-theme="pink"] .exploration-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 3px 3px 0px var(--accent-dim);
+  border-color: var(--accent-dim);
+}
+
+[data-theme="pink"] .exploration-category {
+  border-radius: 2px 6px 2px 8px;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  transform: rotate(-1deg);
+}
+
+/* Deliberation time pink mode */
+[data-theme="pink"] .deliberation-section {
+  border: 2px solid var(--surface-2);
+  border-radius: 2px 8px 2px 12px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 245, 247, 0.5);
+  transform: rotate(0.3deg);
+}
+
+[data-theme="pink"] .deliberation-entry {
+  border-bottom-color: rgba(196, 68, 122, 0.15);
+}
+
+[data-theme="pink"] .deliberation-time {
+  color: var(--accent);
+}
+
+/* Enhanced intro animations in pink mode */
+[data-theme="pink"] .intro-quote {
+  animation: typewriter 2.5s steps(45) 0.1s forwards, 
+             blinkCursor 0.75s step-end infinite,
+             quoteWobble 3s ease-in-out 3s infinite;
+}
+
+@keyframes quoteWobble {
+  0%, 100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+[data-theme="pink"] .intro-axis {
+  animation: axisFadeIn 0.6s ease forwards, axisFloat 4s ease-in-out infinite;
+}
+
+@keyframes axisFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Delay the float animation so they don't all float in sync */
+[data-theme="pink"] .intro-axis:nth-child(1) { animation-delay: 0.2s, 0.5s; }
+[data-theme="pink"] .intro-axis:nth-child(2) { animation-delay: 0.4s, 1.0s; }
+[data-theme="pink"] .intro-axis:nth-child(3) { animation-delay: 0.6s, 1.5s; }
+[data-theme="pink"] .intro-axis:nth-child(4) { animation-delay: 0.8s, 2.0s; }
+[data-theme="pink"] .intro-axis:nth-child(5) { animation-delay: 1.0s, 2.5s; }
+[data-theme="pink"] .intro-axis:nth-child(6) { animation-delay: 1.2s, 3.0s; }
+[data-theme="pink"] .intro-axis:nth-child(7) { animation-delay: 1.4s, 3.5s; }
+
+/* Scenario transitions in pink mode - extra bouncy */
+[data-theme="pink"] .scenario-container {
+  animation: scenarioBounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes scenarioBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-2deg);
+  }
+  60% {
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+@media (max-width: 600px) {
+  .exploration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deliberation-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .intro-quote {
+    white-space: normal;
+    animation: none;
+    border-right: none;
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "contradictionTexts": [
+    {
+      "axis": "ethics",
+      "direction": "deontological_then_consequentialist",
+      "header": "a tension worth sitting with.",
+      "body": "Earlier, you held fast to principle regardless of outcome. Just now, you let the consequences decide. This isn't hypocrisy; it's the oldest argument in ethics. Kant and Mill would both claim you as their own.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "ethics",
+      "direction": "consequentialist_then_deontological",
+      "header": "the math stopped working.",
+      "body": "You began by weighing outcomes, calculating the greater good. Then something shifted—a line you wouldn't cross, regardless of the calculus. Sometimes the ends don't justify the means, even when we wish they could.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "ethics",
+      "direction": "relative_then_absolute",
+      "header": "the ground beneath your feet.",
+      "body": "Context mattered to you at first—situation, culture, nuance. But just now you reached for something universal, something that holds everywhere. We all need bedrock eventually, even those of us who question its existence.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "self",
+      "direction": "individual_then_collective",
+      "header": "the boundaries blur.",
+      "body": "You claimed yourself as sovereign, self-contained. Then you chose as though you were woven into something larger. Sartre and ubuntu philosophy meet here—the self that is both irreducibly alone and inescapably connected.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "self",
+      "direction": "collective_then_individual",
+      "header": "stepping out of the circle.",
+      "body": "Your earlier answers spoke of belonging, of the self as fundamentally relational. Just now, you drew a boundary—here is where I begin and others end. Neither choice is wrong; both are necessary. We contain multitudes.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "self",
+      "direction": "fixed_then_fluid",
+      "header": "who you are and who you're becoming.",
+      "body": "At first, you suggested the self is stable, essential, knowable. Then you reached for change, for becoming rather than being. Heraclitus and Parmenides have been arguing about this for 2,500 years. You just took both sides.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "endurance",
+      "direction": "stoic_then_hedonistic",
+      "header": "when discipline softens.",
+      "body": "Earlier you chose endurance over pleasure, meaning over comfort. Just now, you let yourself want what feels good. Seneca practiced poverty one day a month, then returned to his wealth. Even the Stoics knew: asceticism isn't the whole story.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "endurance",
+      "direction": "hedonistic_then_stoic",
+      "header": "the pleasure that wasn't enough.",
+      "body": "You began by choosing what felt good, what brought joy now. Then something asked for sacrifice, for the long view, and you gave it. Epicurus—the original hedonist—knew this paradox: sometimes pleasure requires refusing pleasure.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "endurance",
+      "direction": "present_then_future",
+      "header": "time's weight shifts.",
+      "body": "First, you valued the immediate—this moment, this experience. Then you invested in tomorrow, accepted cost for later gain. We live in both tenses simultaneously. The tension is what it means to be mortal and dreaming.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "method",
+      "direction": "rational_then_intuitive",
+      "header": "when reason steps aside.",
+      "body": "You trusted analysis, logic, systematic thought. Then you leaned into feeling, instinct, the knowledge that can't be articulated. Spinoza's geometry meets Pascal's heart. Both are ways of knowing; neither is complete alone.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "method",
+      "direction": "intuitive_then_rational",
+      "header": "the gut that needed proof.",
+      "body": "Your earlier choices followed something unspoken—intuition, felt sense, the wisdom of the body. Just now you asked for reasons, for evidence you could examine. Even Kierkegaard, champion of the leap, spent pages arguing for it.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "method",
+      "direction": "abstract_then_concrete",
+      "header": "when theory meets the particular.",
+      "body": "You began with principles, patterns, the view from nowhere. Then a specific case made you choose differently—this person, this moment. Plato sought the Forms; Aristotle studied actual things. Philosophy needs both altitudes.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "freedom",
+      "direction": "deterministic_then_libertarian",
+      "header": "the will that emerged.",
+      "body": "Earlier, you saw choice as illusion—shaped by genes, history, physics. Then you acted as though you were genuinely free, the author of your path. Compatibilism tries to hold both. Most of us just live the paradox daily.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "freedom",
+      "direction": "libertarian_then_deterministic",
+      "header": "the invisible hand on your shoulder.",
+      "body": "You claimed radical freedom, the power to choose otherwise. Just now you acknowledged the forces that shape you—biology, culture, circumstance. We are both more free and less free than we think. Sartre knew this tension intimately.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "freedom",
+      "direction": "autonomous_then_relational",
+      "header": "freedom as connection.",
+      "body": "Your earlier answers prized independence, self-direction, the unencumbered will. Then you chose as though freedom meant being accountable to others. Negative and positive liberty—Berlin's famous distinction. You just inhabited both.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "knowledge",
+      "direction": "skeptical_then_certain",
+      "header": "the doubt that couldn't hold.",
+      "body": "First, you questioned, withheld judgment, recognized the limits of knowing. Then you claimed something as true, worth acting on. Hume was a skeptic at his desk, a regular person at dinner. We all need somewhere to stand.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "knowledge",
+      "direction": "certain_then_skeptical",
+      "header": "when knowing becomes questioning.",
+      "body": "You began with confidence—some things are knowable, provable, solid ground. Just now you pulled back, acknowledged uncertainty. Even Descartes, seeking certainty, found only one thing he couldn't doubt. The rest required faith of various kinds.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "knowledge",
+      "direction": "objective_then_subjective",
+      "header": "truth and truths.",
+      "body": "Earlier, you reached for truth independent of perspective—what's real regardless of who's asking. Then you honored the view from somewhere, the situated knower. Nagel asked what it's like to be a bat. You just felt the question's weight.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "reality",
+      "direction": "materialist_then_idealist",
+      "header": "matter and what matters.",
+      "body": "You started with the physical—neurons, particles, what can be measured and touched. Then you chose as though mind or meaning came first. The hard problem of consciousness lives here. Chalmers and Dennett are still arguing.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "reality",
+      "direction": "idealist_then_materialist",
+      "header": "when spirit needs a body.",
+      "body": "Your earlier answers privileged consciousness, experience, the irreducibility of mind. Just now you grounded yourself in the physical, the material substrate. Berkeley versus Hobbes. Most of us need both—the dream and the dreamer.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "reality",
+      "direction": "scientific_then_mystical",
+      "header": "beyond the edge of measurement.",
+      "body": "First, you trusted what can be tested, observed, replicated. Then you reached for something ineffable, beyond empiricism's grasp. William James knew this borderland—the varieties of religious experience meeting the science of mind.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "cross",
+      "direction": "consequentialist_individual",
+      "header": "the loneliness of the greater good.",
+      "body": "You maximize outcomes for the many, yet claim the self as sovereign and separate. Utilitarianism meets radical individualism. It's a strange marriage—calculating collective welfare while asserting that only individuals are real. You're not alone in this tension.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "cross",
+      "direction": "deontological_deterministic",
+      "header": "duty without freedom.",
+      "body": "You hold to moral law, to obligations that bind regardless of consequence. Yet you doubt the will is free. Kant built his entire system on freedom as the condition for morality. You've just collapsed his cathedral. Or revealed its foundation was always uncertain.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "cross",
+      "direction": "hedonistic_skeptical",
+      "header": "pleasure while doubting pleasure.",
+      "body": "You choose what feels good, what brings joy or satisfaction. Yet you question whether we can know anything reliably—including what's truly good. Pyrrho the skeptic sought tranquility through suspending judgment. You're seeking it while suspended in uncertainty.",
+      "tone": "contemplative"
+    },
+    {
+      "axis": "cross",
+      "direction": "rational_mystical",
+      "header": "reason's edge, and what lies beyond.",
+      "body": "You trust logic, analysis, the systematic method of thought. You also reach for the transcendent, the truth that exceeds argument. Wittgenstein's ladder—climb up using logic, then throw it away. Or Gödel's theorems: reason proving reason's limits. The contradiction might be the point.",
+      "tone": "contemplative"
+    }
+  ]
+}

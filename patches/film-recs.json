@@ -1,0 +1,189 @@
+[
+  {
+    "archetype": "The Examined Stoic",
+    "items": [
+      {
+        "title": "Gladiator",
+        "creator": "Ridley Scott (2000)",
+        "why": "Maximus endures the unendurable with grace—loss, slavery, death—without self-pity or complaint. The arena becomes his meditation hall, each fight a practice in presence, each breath a choice to remain unbroken.",
+        "type": "film"
+      },
+      {
+        "title": "Master and Commander: The Far Side of the World",
+        "creator": "Peter Weir (2003)",
+        "why": "Captain Aubrey commands with Stoic virtue incarnate: duty over desire, discipline over impulse, the mission above the man. A floating Republic where reason governs the passions and every decision carries the weight of lives.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Reluctant Utilitarian",
+    "items": [
+      {
+        "title": "The Dark Knight",
+        "creator": "Christopher Nolan (2008)",
+        "why": "Batman calculates consequences in real-time—two ferries, impossible choices, the Joker forcing Gotham to do its own moral accounting. The greatest good demands the dirtiest hands, and Harvey Dent's fall proves even heroes can't escape the math.",
+        "type": "film"
+      },
+      {
+        "title": "A Serious Man",
+        "creator": "Coen Brothers (2009)",
+        "why": "Larry Gopnik tries desperately to be good, to calculate the right action, but the universe returns only static and suffering. A cosmic joke about moral ledgers that refuse to balance—sometimes the trolley hits everyone.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Existential Pragmatist",
+    "items": [
+      {
+        "title": "No Country for Old Men",
+        "creator": "Coen Brothers (2007)",
+        "why": "Llewelyn Moss makes the choice and lives the consequence—no cosmic justice, no safety net, just the cold truth that actions ripple forward into chaos. Chigurh is fate with a philosophy degree; the coin flip is all the meaning you get.",
+        "type": "film"
+      },
+      {
+        "title": "My Dinner with Andre",
+        "creator": "Louis Malle (1981)",
+        "why": "Andre chases transcendence across continents while Wallace defends the comfort of coffee and routine—two philosophers at dinner, one mystic and one pragmatist, both trying to justify how they've chosen to live. The conversation is the philosophy.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Relational Existentialist",
+    "items": [
+      {
+        "title": "Before Sunrise",
+        "creator": "Richard Linklater (1995)",
+        "why": "Jesse and Céline wander Vienna discovering the I-Thou in real-time—two strangers becoming whole through genuine encounter, creating meaning through dialogue, building a world between them that didn't exist before. Connection as existential act.",
+        "type": "film"
+      },
+      {
+        "title": "Wings of Desire",
+        "creator": "Wim Wenders (1987)",
+        "why": "Damiel the angel witnesses humanity from above—lonely, eternal, untouchable—until love for a trapeze artist pulls him into mortal flesh. A meditation on what we sacrifice for connection: immortality for a single human touch.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Radical Individualist",
+    "items": [
+      {
+        "title": "The Matrix",
+        "creator": "Wachowskis (1999)",
+        "why": "Neo wakes up, rejects the given world, and wills himself into the Übermensch—literally rewriting reality through sheer self-creation. The red pill is the most Nietzschean choice in cinema: truth over comfort, becoming over being.",
+        "type": "film"
+      },
+      {
+        "title": "When Nietzsche Wept",
+        "creator": "Pinchas Perry (2007)",
+        "why": "Nietzsche himself as patient-philosopher, wrestling with despair and the death of God in 19th-century Vienna. A dramatization of the man behind the Übermensch, showing the loneliness of radical freedom and the cost of rejecting herd morality.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Contemplative Mystic",
+    "items": [
+      {
+        "title": "Stalker",
+        "creator": "Andrei Tarkovsky (1979)",
+        "why": "Three men journey into the Zone seeking a room that grants desires—but the real pilgrimage is inward, through stillness and silence, toward the ineffable. Tarkovsky films time itself, turning cinema into prayer.",
+        "type": "film"
+      },
+      {
+        "title": "The Tree of Life",
+        "creator": "Terrence Malick (2011)",
+        "why": "Malick shoots the cosmic and the domestic as one continuous meditation—the Big Bang to a 1950s childhood, dinosaurs to whispered prayers. Grace versus nature, eternity in a blade of grass, the universe contemplating itself through human eyes.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Philosophical Warrior",
+    "items": [
+      {
+        "title": "Harakiri",
+        "creator": "Masaki Kobayashi (1962)",
+        "why": "Kobayashi dismantles bushido from within—a ronin exposes the samurai code as performative cruelty, honor as institutional violence. The greatest warrior film is the one that asks whether the warrior's way is worth the bloodshed.",
+        "type": "film"
+      },
+      {
+        "title": "The Last Samurai",
+        "creator": "Edward Zwick (2003)",
+        "why": "Captain Algren finds discipline, honor, and purpose in the dying samurai tradition—learning that the warrior's true battle is internal, against ego and chaos. Bushido as spiritual practice, the sword as path to enlightenment, death as teacher.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Practical Philosopher",
+    "items": [
+      {
+        "title": "Examined Life",
+        "creator": "Astra Taylor (2008)",
+        "why": "Philosophy pulled from the ivory tower and placed on city streets—Cornel West in a taxi, Peter Singer at a clothing donation bin, philosophers making their ideas walk. The unexamined life is not worth living; this doc makes examination cinematic.",
+        "type": "documentary"
+      },
+      {
+        "title": "My Dinner with Andre",
+        "creator": "Louis Malle (1981)",
+        "why": "Two old friends debate how to live over dinner—mysticism versus materialism, experience versus comfort, meaning versus routine. Philosophy as conversation, the everyday elevated into inquiry, a restaurant booth as Socratic dialogue.",
+        "type": "film"
+      }
+    ]
+  },
+  {
+    "archetype": "The Poetic Empiricist",
+    "items": [
+      {
+        "title": "Koyaanisqatsi",
+        "creator": "Godfrey Reggio (1982)",
+        "why": "Pure observation without narration—time-lapse cities, slow-motion crowds, the planet as raw sensory data set to Philip Glass. Reggio films reality as it is, letting patterns emerge from patient watching: empiricism as visual poem.",
+        "type": "documentary"
+      },
+      {
+        "title": "Baraka",
+        "creator": "Ron Fricke (1992)",
+        "why": "Fricke shoots 24 countries without a single word, trusting the image to reveal truth—ritual, industry, nature, devotion, all woven into wordless meditation. The eye as instrument, the camera as microscope of the human condition.",
+        "type": "documentary"
+      }
+    ]
+  },
+  {
+    "archetype": "The Communal Builder",
+    "items": [
+      {
+        "title": "12 Angry Men",
+        "creator": "Sidney Lumet (1957)",
+        "why": "Twelve strangers in a room, deliberating a life—democracy as crucible, community forged through argument and persuasion. One dissenting voice changes eleven minds; the jury room becomes the polis, dialogue the tool of justice.",
+        "type": "film"
+      },
+      {
+        "title": "American Factory",
+        "creator": "Steven Bognar & Julia Reichert (2019)",
+        "why": "Chinese management meets American labor in an Ohio factory—culture clash, collective bargaining, the fraught work of building community across vast difference. Neither side wins cleanly; the documentary watches humans try to make it work anyway.",
+        "type": "documentary"
+      }
+    ]
+  },
+  {
+    "archetype": "The Philosophical Pluralist",
+    "items": [
+      {
+        "title": "Rashomon",
+        "creator": "Akira Kurosawa (1950)",
+        "why": "One crime, four testimonies, zero objective truth—Kurosawa's masterpiece weaponizes perspective itself. Every witness is unreliable, every account self-serving, and the film refuses to arbitrate. Pluralism as narrative structure, ambiguity as wisdom.",
+        "type": "film"
+      },
+      {
+        "title": "Gone Girl",
+        "creator": "David Fincher (2014)",
+        "why": "Amy and Nick narrate competing realities—marriage as Rashomon, truth as performance, each partner the unreliable narrator of their shared life. Fincher films the collision of perspectives, showing how the same events contain infinite interpretations.",
+        "type": "film"
+      }
+    ]
+  }
+]
