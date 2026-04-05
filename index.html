@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="pink">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1726,7 +1726,7 @@ body.modal-open > *:not(.contradiction-interstitial) {
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme between dark and pink modes">✿</button>
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme between dark and pink modes">I'm not boring!</button>
 
 <div class="screen active" id="intro-screen" role="main" aria-labelledby="intro-title">
   <div class="intro-content">
@@ -1847,13 +1847,13 @@ function toggleTheme() {
   }
 }
 
-// Load saved theme (pink is default)
+// Load saved theme
 (function() {
   const saved = localStorage.getItem('examined-theme');
-  if (saved === 'dark') {
-    document.documentElement.removeAttribute('data-theme');
+  if (saved === 'pink') {
+    document.documentElement.setAttribute('data-theme', 'pink');
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('theme-toggle').textContent = "I'm not boring!";
+      document.getElementById('theme-toggle').textContent = '✿';
     });
   }
 })();
