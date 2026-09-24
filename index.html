@@ -1719,7 +1719,7 @@ main:focus { outline: none; }
 [hidden] { display: none !important; }
 button { font: inherit; color: inherit; }
 .btn:focus-visible, .btn-small:focus-visible, .btn-link:focus-visible, .path-card:focus-visible,
-.path-all:focus-visible, .go-back:focus-visible, .reading-card-link:focus-visible, .contradiction-continue:focus-visible {
+.go-back:focus-visible, .reading-card-link:focus-visible, .contradiction-continue:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -1746,15 +1746,7 @@ button { font: inherit; color: inherit; }
 .path-card { display: block; width: 100%; font: inherit; color: inherit; }
 .path-card > span { display: block; }
 .path-card > .path-card-icon { display: none; }
-.path-all {
-  display: inline-block; margin: 0.4rem auto 1.2rem; padding: 0.5rem 0.8rem;
-  background: none; border: 1px dashed transparent; border-radius: 4px; cursor: pointer;
-  font-family: var(--font-body); font-style: italic; font-size: 0.9rem; color: var(--text-dim);
-  text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--accent-dim);
-}
-.path-all:hover { color: var(--accent); }
-.path-all.selected { color: var(--accent); border-color: var(--accent); text-decoration: none; }
-.path-go { min-height: 3.5rem; }
+.path-go { min-height: 3.5rem; margin-top: 0.5rem; }
 
 /* question counter + go-back */
 .scenario-topline { display: flex; align-items: center; justify-content: space-between; min-height: 2rem; margin-bottom: 0.5rem; }
@@ -1855,7 +1847,7 @@ button { font: inherit; color: inherit; }
 <div class="screen" id="path-screen" aria-labelledby="path-title">
   <div class="path-content">
     <h2 class="path-title" id="path-title">choose your path</h2>
-    <p class="path-subtitle">or take them all</p>
+    <p class="path-subtitle">the short road or the long one</p>
     <div class="paths">
       <button type="button" class="path-card" onclick="selectPath('essential')" id="path-essential" aria-pressed="false">
         <span class="path-card-icon" aria-hidden="true">◯</span>
@@ -1870,9 +1862,6 @@ button { font: inherit; color: inherit; }
         <span class="path-card-count">16 scenarios · ~25 min</span>
       </button>
     </div>
-    <button type="button" class="path-all" onclick="selectPath('deep')" id="path-deep" aria-pressed="false">
-      or all twenty-four, the deep cut · ~35 min
-    </button>
     <div class="path-go">
       <button type="button" class="btn" id="path-go-btn" hidden onclick="startExam()">continue</button>
     </div>
@@ -2725,7 +2714,7 @@ function showPaths() { showScreen('path-screen'); }
 
 function selectPath(p) {
   selectedPath = p;
-  document.querySelectorAll('.path-card, .path-all').forEach(c => {
+  document.querySelectorAll('.path-card').forEach(c => {
     const on = c.id === 'path-' + p;
     c.classList.toggle('selected', on);
     c.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -2738,7 +2727,7 @@ function selectPath(p) {
 
 function clearPathSelection() {
   selectedPath = null;
-  document.querySelectorAll('.path-card, .path-all').forEach(c => {
+  document.querySelectorAll('.path-card').forEach(c => {
     c.classList.remove('selected');
     c.setAttribute('aria-pressed', 'false');
   });
@@ -2970,28 +2959,43 @@ document.addEventListener('keydown', (e) => {
 
 // ===== RESULTS =====
 
-// Scores → 0..1 per axis, centred and stretched so the chart shows *relative* priorities
-// (Schwartz centering). Every place that shows numbers — the bars, the radar, the share image,
-// copy and email — uses this, so they always agree.
-function computeNormalized() {
-  const maxP = Math.round(Math.min(activeScenarios.length * 0.6, 14));
-  // Raw normalization
-  const raw = {};
-  for (const axis of Object.keys(AXES)) {
-    raw[axis] = Math.max(0, Math.min(1, ((scores[axis] || 0) + maxP) / (2 * maxP)));
+// ===== SCORING =====
+// Each answer adds small numbers to seven axes. The raw totals can't be read directly:
+// many answers lean "pragmatist" or "libertarian", so on the 16-question path someone
+// clicking at random already scores +4 on freedom. So every axis is measured against
+// what random answering on *this* path would give: the bar shows where you sit among
+// all the ways of answering (50% = no lean at all, 84% = one standard deviation towards
+// the right-hand pole).
+function axisBaseline(scenarios) {
+  const base = {};
+  for (const a of Object.keys(AXES)) {
+    let mean = 0, variance = 0;
+    for (const s of scenarios) {
+      const xs = s.choices.map(c => c.scores[a] || 0);
+      const m = xs.reduce((p, x) => p + x, 0) / xs.length;
+      mean += m;
+      variance += xs.reduce((p, x) => p + (x - m) ** 2, 0) / xs.length;
+    }
+    base[a] = { mean, sd: Math.sqrt(variance) || 1 };
   }
-  // Schwartz centering — subtract mean to show RELATIVE priorities
-  const axes = Object.keys(AXES);
-  const mean = axes.reduce((s, a) => s + raw[a], 0) / axes.length;
-  const centered = {};
-  for (const a of axes) { centered[a] = raw[a] - mean; }
-  // Re-normalize centered values to 0-1 range
-  const vals = axes.map(a => centered[a]);
-  const cMin = Math.min(...vals), cMax = Math.max(...vals);
-  const cRange = cMax - cMin || 1;
+  return base;
+}
+
+// standard normal cumulative distribution (Abramowitz & Stegun 26.2.17)
+function normalCdf(z) {
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989423 * Math.exp(-z * z / 2);
+  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+  return z > 0 ? 1 - p : p;
+}
+
+// Scores → 0..1 per axis. Every place that shows numbers — the bars, the radar, the
+// share image, copy and email, the philosopher match — uses this, so they always agree.
+function computeNormalized() {
+  const base = axisBaseline(activeScenarios);
   const normalized = {};
-  for (const a of axes) {
-    normalized[a] = (centered[a] - cMin) / cRange;
+  for (const a of Object.keys(AXES)) {
+    normalized[a] = normalCdf(((scores[a] || 0) - base[a].mean) / base[a].sd);
   }
   return normalized;
 }
@@ -3014,7 +3018,7 @@ function showResults() {
   const normalized = computeNormalized();
   lastNormalized = normalized;
 
-  const archetype = getArchetype(normalized);
+  const archetype = getArchetype();
   document.getElementById('archetype-name').textContent = archetype.name;
   document.getElementById('archetype-sub').textContent = archetype.subtitle;
   if (firstTime) track('examined-complete', { path: selectedPath, archetype: archetype.name });
@@ -3137,22 +3141,37 @@ const ARCHETYPES = [
     thinkers:'Isaiah Berlin, Hannah Arendt, William James, Montaigne, Ibn Arabi' }
 ];
 
-function getArchetype(n) {
-  // Distance-based matching — find closest archetype profile
-  const axes = Object.keys(AXES);
-  let best = null, bestDist = Infinity;
+// Which archetype would most likely have answered exactly the way you did?
+// Someone with an archetype's leanings (its `ideal`, 0.5 = no lean) prefers answers that
+// push the axes their way, but not perfectly — ARCHETYPE_NOISE sets how consistently.
+// 0.8 matches how consistently the people on the wall actually answered. We score every
+// archetype by how likely your exact answers are under it and pick the best.
+// Tested by simulating people with known leanings: they get their own archetype back
+// ~40-55% of the time (11 archetypes, so chance is 9%); the old nearest-point matching
+// managed 27-36%, and almost never produced the Relational Existentialist or the
+// Communal Builder even for people who were exactly that.
+// The Philosophical Pluralist (no lean anywhere) wins when no single framework explains
+// your answers better than chance.
+const ARCHETYPE_NOISE = 0.8;
+
+function choiceProbabilities(scenario, ideal) {
+  const u = scenario.choices.map(c =>
+    Object.keys(AXES).reduce((t, a) => t + (ideal[a] - 0.5) * (c.scores[a] || 0), 0));
+  const top = Math.max(...u);
+  const e = u.map(x => Math.exp((x - top) / ARCHETYPE_NOISE));
+  const sum = e.reduce((p, x) => p + x, 0);
+  return e.map(x => x / sum);
+}
+
+function getArchetype() {
+  let best = null, bestLogLik = -Infinity;
   for (const arch of ARCHETYPES) {
-    let dist = 0;
-    for (const axis of axes) {
-      // NB: the lowest axis is always exactly 0 after normalisation, and `|| 0.5` turns that 0
-      // into 0.5. It looks like a bug, but the archetype ideals were tuned with it in place:
-      // switching to `?? 0.5` changes the archetype for about half of all runs (simulated),
-      // so leave it unless the ideals are retuned at the same time. Same in findClosestPhilosophers.
-      const diff = (n[axis] || 0.5) - arch.ideal[axis];
-      dist += diff * diff;
+    let logLik = 0;
+    for (const a of answers) {
+      const s = activeScenarios[a.scenario];
+      if (s) logLik += Math.log(choiceProbabilities(s, arch.ideal)[a.choice]);
     }
-    dist = Math.sqrt(dist);
-    if (dist < bestDist) { bestDist = dist; best = arch; }
+    if (logLik > bestLogLik) { bestLogLik = logLik; best = arch; }
   }
   return best;
 }
@@ -3428,6 +3447,13 @@ function restoreState(saved) {
   } else {
     activeScenarios = scenariosForPath(selectedPath);
   }
+  // One answer per question, and scores rebuilt from the answers, so a save made by the old
+  // version of the page (which could record a question twice) can't double-count.
+  const seen = new Set();
+  answers = answers.filter(a => a && activeScenarios[a.scenario] && activeScenarios[a.scenario].choices[a.choice] && !seen.has(a.scenario) && seen.add(a.scenario));
+  scores = {};
+  for (const k of Object.keys(AXES)) scores[k] = 0;
+  for (const a of answers) for (const [axis, val] of Object.entries(activeScenarios[a.scenario].choices[a.choice].scores)) scores[axis] += val;
   // Resume after the last *answered* question. (Saving happens the moment a choice is made,
   // so resuming at the saved index used to re-ask that question and count it twice.)
   currentScenario = answers.length;
@@ -3649,7 +3675,7 @@ const PHILOSOPHERS=[
 ];
 function findClosestPhilosophers(normalizedScores) {
   const ax=Object.keys(AXES);
-  const matches=PHILOSOPHERS.map(phil=>{let sum=0;for(const a of ax){const d=(normalizedScores[a]||0.5)-phil.scores[a];sum+=d*d;}const dist=Math.sqrt(sum);return{philosopher:phil,distance:dist,matchPercentage:Math.round((1-(dist/Math.sqrt(7)))*100)};});
+  const matches=PHILOSOPHERS.map(phil=>{let sum=0;for(const a of ax){const d=normalizedScores[a]-phil.scores[a];sum+=d*d;}const dist=Math.sqrt(sum);return{philosopher:phil,distance:dist,matchPercentage:Math.round((1-(dist/Math.sqrt(7)))*100)};});
   matches.sort((a,b)=>a.distance-b.distance);return matches.slice(0,3);
 }
 function renderPhilosopherMatch(matches) {
