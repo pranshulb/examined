@@ -388,7 +388,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-  max-width: 500px;
+  max-width: 580px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -969,12 +969,12 @@ body {
   .deliberation-entry { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   
   /* Contradiction interstitial */
-  .contradiction-interstitial { padding: 1rem; }
-  .contradiction-content { padding: 2rem 1.5rem; }
+  .contradiction-interstitial { padding: 0.75rem; }
+  .contradiction-content { padding: 1.8rem 1.1rem; }
   .contradiction-symbol { font-size: 2rem; margin-bottom: 1.5rem; }
   .contradiction-choice-item { padding: 0.8rem; margin-bottom: 1rem; }
   .contradiction-choice-text { font-size: 0.88rem; }
-  .contradiction-commentary { font-size: 0.93rem; padding: 1.2rem; margin-bottom: 2rem; }
+  .contradiction-commentary { font-size: 0.98rem; padding: 1.2rem 0.2rem; margin-bottom: 2rem; }
   .contradiction-continue { width: 100%; }
 }
   /* ===== AGENT 4: VISUAL POLISH & PINK MODE ===== */
@@ -1947,6 +1947,9 @@ button { font: inherit; color: inherit; }
 <noscript><p class="noscript">examined. needs javascript to run — it's a quiz that happens entirely in your browser.</p></noscript>
 
 <script>
+// the quiz swaps screens in place, so a restored scroll position from last visit is never right
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 // ===== THEME =====
 // pink is the default; dark is opt-in. the button shows where it takes you:
 // ⚙ from pink to dark, ✿ from dark back to pink.
@@ -2002,7 +2005,7 @@ const READINGS = {
     { title:'Gladiator', author:'Ridley Scott (2000)', why:'Maximus endures the unendurable with grace—loss, slavery, death—without self-pity or complaint. The arena becomes his meditation hall, each fight a practice in presence, each breath a choice to remain unbroken.', type:'film' },
     { title:'Master and Commander: The Far Side of the World', author:'Peter Weir (2003)', why:'Captain Aubrey commands with Stoic virtue incarnate: duty over desire, discipline over impulse, the mission above the man. A floating Republic where reason governs the passions and every decision carries the weight of lives.', type:'film' },
     { title:'The Daily Stoic Podcast', author:'Ryan Holiday', why:'Daily doses of ancient wisdom filtered through modern chaos—like Marcus Aurelius whispering in your ear during your commute. Less philosophy lecture, more emergency kit for the soul.', type:'podcast', url:'https://dailystoic.com/podcast/' },
-    { title:'Epictetus: The Enchiridion', author:'Epictetus', why:'A former slave\'s field manual for inner freedom, distilled into bite-sized maxims that hit harder than most modern self-help. Your ancestors read this before battle; you can read it before Monday.', type:'essay', url:'https://standardebooks.org/ebooks/epictetus/the-enchiridion' },
+    { title:'Epictetus: The Enchiridion', author:'Epictetus', why:'A former slave\'s field manual for inner freedom, distilled into bite-sized maxims that hit harder than most modern self-help. Your ancestors read this before battle; you can read it before Monday.', type:'essay', url:'https://www.gutenberg.org/ebooks/45109' },
   ],
   'The Reluctant Utilitarian': [
     { title:'Strangers Drowning', author:'Larissa MacFarquhar', why:'Profiles of extreme altruists. What happens when you take utilitarian logic all the way — beautiful, disturbing, essential.', type:'book' },
@@ -2119,7 +2122,7 @@ const READINGS = {
     { title:'12 Angry Men', author:'Sidney Lumet (1957)', why:'Twelve strangers in a room, deliberating a life—democracy as crucible, community forged through argument and persuasion. One dissenting voice changes eleven minds; the jury room becomes the polis, dialogue the tool of justice.', type:'film' },
     { title:'American Factory', author:'Steven Bognar & Julia Reichert (2019)', why:'Chinese management meets American labor in an Ohio factory—culture clash, collective bargaining, the fraught work of building community across vast difference. Neither side wins cleanly; the documentary watches humans try to make it work anyway.', type:'film' },
     { title:'Michael Sandel on The Tyranny of Merit', author:'Michael J. Sandel', why:'Harvard\'s communitarian diagnostician dissects how meritocracy corrodes solidarity—and why we need to rebuild the common good. A philosophical autopsy of what binds (and breaks) us.', type:'lecture', url:'https://news.harvard.edu/gazette/story/2021/01/the-myth-of-meritocracy-according-to-michael-sandel/' },
-    { title:'I Am Because We Are: Ubuntu and African Philosophy', author:'To The Best Of Our Knowledge', why:'The radical proposition that your humanity is not solo achievement but collective creation. Ubuntu as antidote to Western atomization—you exist because others call you into being.', type:'podcast', url:'https://www.ttbook.org/interview/i-am-because-we-are-african-philosophy-ubuntu' },
+    { title:'I Am Because We Are: Ubuntu and African Philosophy', author:'To The Best Of Our Knowledge', why:'The radical proposition that your humanity is not solo achievement but collective creation. Ubuntu as antidote to Western atomization—you exist because others call you into being.', type:'podcast', url:'https://www.wpr.org/shows/to-the-best-of-our-knowledge/i-am-because-we-are-the-african-philosophy-of-ubuntu' },
   ],
   'The Philosophical Pluralist': [
     { title:'Taking Back Philosophy', author:'Bryan Van Norden', why:'The case for multicultural philosophy. Why limiting "philosophy" to the Western canon is intellectually bankrupt.', type:'book' },
