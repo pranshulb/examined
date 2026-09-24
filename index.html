@@ -75,17 +75,7 @@
 
 /* ===== PINK MODE: FUNKY PHILOSOPHY ===== */
 
-/* Thinking emoji cursor */
-[data-theme="pink"] {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🤔</text></svg>") 16 0, auto;
-}
-[data-theme="pink"] .btn,
-[data-theme="pink"] .btn-small,
-[data-theme="pink"] .choice,
-[data-theme="pink"] .path-card,
-[data-theme="pink"] .theme-toggle {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>👆</text></svg>") 16 0, pointer;
-}
+/* Normal cursor in pink mode */
 
 /* Animated gradient background */
 [data-theme="pink"] body {
@@ -402,9 +392,12 @@ body {
 
 .paths {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .path-card {
@@ -414,15 +407,14 @@ body {
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: left;
+  text-align: center;
 }
 
 .path-card:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
 .path-card.selected { border-color: var(--accent); background: var(--surface-2); }
 
 .path-card-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.8rem;
+  display: none;
 }
 
 .path-card-name {
@@ -1710,7 +1702,7 @@ body.modal-open > *:not(.contradiction-interstitial) {
   border: 2px solid var(--accent);
   border-radius: 4px;
   box-shadow: 3px 3px 0px var(--accent);
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>👆</text></svg>") 16 0, pointer;
+  cursor: pointer;
 }
 
 [data-theme="pink"] .contradiction-continue:hover {
@@ -1726,7 +1718,7 @@ body.modal-open > *:not(.contradiction-interstitial) {
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme between dark and pink modes">I'm not boring!</button>
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme between pink and dark modes">⚙</button>
 
 <div class="screen active" id="intro-screen" role="main" aria-labelledby="intro-title">
   <div class="intro-content">
@@ -1760,20 +1752,15 @@ body.modal-open > *:not(.contradiction-interstitial) {
         <div class="path-card-icon">◯</div>
         <div class="path-card-name">THE ESSENTIAL</div>
         <p class="path-card-desc">Ten core dilemmas. Ethics, freedom, meaning, identity. The greatest hits.</p>
-        <div class="path-card-count">10 scenarios · ~8 min</div>
+        <div class="path-card-count">10 scenarios · ~15 min</div>
       </div>
       <div class="path-card" onclick="selectPath('examined')" id="path-examined">
         <div class="path-card-icon">◎</div>
         <div class="path-card-name">THE EXAMINED</div>
         <p class="path-card-desc">Sixteen carefully chosen dilemmas spanning ethics, identity, knowledge, and belonging. The sweet spot.</p>
-        <div class="path-card-count">16 scenarios · ~15 min</div>
+        <div class="path-card-count">16 scenarios · ~25 min</div>
       </div>
-      <div class="path-card" onclick="selectPath('deep')" id="path-deep">
-        <div class="path-card-icon">◉</div>
-        <div class="path-card-name">THE DEEP CUT</div>
-        <p class="path-card-desc">All twenty-four. The complete philosophical inventory — Western, Eastern, African, Indigenous, and everything between.</p>
-        <div class="path-card-count">24 scenarios · ~25 min</div>
-      </div>
+
     </div>
     <button class="btn" id="path-go-btn" style="display:none" onclick="startExam()">continue</button>
   </div>
@@ -1838,22 +1825,28 @@ function toggleTheme() {
   const btn = document.getElementById('theme-toggle');
   if (html.getAttribute('data-theme') === 'pink') {
     html.removeAttribute('data-theme');
-    btn.textContent = "I'm not boring!";
+    btn.textContent = '✿';
     localStorage.setItem('examined-theme', 'dark');
   } else {
     html.setAttribute('data-theme', 'pink');
-    btn.textContent = '✿';
+    btn.textContent = '⚙';
     localStorage.setItem('examined-theme', 'pink');
   }
 }
 
-// Load saved theme
+// Load saved theme — pink is default
 (function() {
   const saved = localStorage.getItem('examined-theme');
-  if (saved === 'pink') {
+  if (saved === 'dark') {
+    // user explicitly chose dark, keep it
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('theme-toggle').textContent = '⚙';
+    });
+  } else {
+    // default to pink
     document.documentElement.setAttribute('data-theme', 'pink');
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('theme-toggle').textContent = '✿';
+      document.getElementById('theme-toggle').textContent = '⚙';
     });
   }
 })();
